@@ -6,6 +6,10 @@ function App() {
   const [year, setYear] = useState(null);
   const [daysInMonth, setDaysInMonth] = useState(null);
 
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+
   const date = new Date()
 
   useEffect(() => {
@@ -16,7 +20,7 @@ function App() {
 
   return (
     <main>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           DAY
           <input
