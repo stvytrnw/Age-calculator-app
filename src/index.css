@@ -1,11 +1,16 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
+  --purple: hsl(259, 100%, 65%);
+  --light-red: hsl(0, 100%, 67%);
+  --white: hsl(0, 0%, 100%);
+  --off-white: hsl(0, 0%, 94%);
+  --light-grey: hsl(0, 0%, 86%);
+  --smokey-grey: hsl(0, 1%, 44%);
+  --off-black: hsl(0, 0%, 8%);
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--off-black);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,10 +30,95 @@ html {
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
   font-size: 1.6em; /* default font of 16px */
+  background-color: var(--light-grey);
 }
 
 /* TYPOGRAPHY */
 
+input {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.results-cnt {
+  padding: 2em 1.5em;
+}
+
+.results-cnt > p {
+  font-weight: 800;
+  font-style: italic;
+  font-size: 5rem;
+}
+
+.results-cnt > p:nth-child(2) {
+  margin: -25px 0;
+}
+
+.results-cnt > p > span {
+  color: var(--purple);
+}
+
 /* MAIN */
 
+main {
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px 20px 75px 20px;
+  background-color: var(--off-white);
+}
+
+form {
+  display: grid;
+  justify-items: center;
+  grid-template-areas:
+    "a a a"
+    "b b b";
+}
+
+.input-cnt {
+  display: flex;
+  grid-area: a;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+label > input {
+  border-radius: 5px;
+  background-color: var(--off-white);
+  border: 1px solid var(--light-grey);
+  color: var(--off-black);
+  width: 100px;
+  padding: 0.25em;
+}
+
+input:focus, input:active {
+  outline: none;
+  border: 1px solid var(--purple);
+}
+
+button {
+  cursor: pointer;
+  grid-area: b;
+  display: block;
+  max-width: 50px;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--purple);
+}
+
+button:active, button:hover {
+  background-color: var(--off-black);
+}
+
+button > img {
+  width: 100%;
+}
