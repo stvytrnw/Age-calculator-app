@@ -5,18 +5,22 @@ function App() {
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
   const [daysInMonth, setDaysInMonth] = useState(null);
+  const [yearsDiff, setYearsDiff] = useState(null)
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
+    getYearsDiff();
   }
 
-  const date = new Date()
-
   useEffect(() => {
-    setDaysInMonth(new Date(year, month, 0).getDate())
-    console.log(daysInMonth)
-  }, [year, month])
+    setDaysInMonth(new Date(year, month, 0).getDate());
+    console.log(daysInMonth);
+  }, [year, month]);
 
+  function getYearsDiff(){
+    setYearsDiff(new Date().getFullYear() - year)
+    console.log(yearsDiff)
+  }
 
   return (
     <main>
@@ -37,7 +41,7 @@ function App() {
         <label>
           MONTH
           <input
-          onChange={(e) => setMonth(e.target.value)}
+            onChange={(e) => setMonth(e.target.value)}
             type="number"
             name="day"
             placeholder="MM"
@@ -50,22 +54,22 @@ function App() {
         <label>
           YEAR
           <input
-          onChange={(e) => setYear(e.target.value)}
+            onChange={(e) => setYear(e.target.value)}
             type="number"
             name="day"
             placeholder="YYYY"
             value={year}
             min={0}
-            max={date.getFullYear()}
+            max={new Date().getFullYear()}
             required
           />
         </label>
         <input type="submit" value="Submit" />
       </form>
       <div className="results-cnt">
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>{yearsDiff != null ? yearsDiff : "- -"} years</p>
+        <p>{new Date().getMonth - year} months</p>
+        <p>{new Date().getDate - year} days</p>
       </div>
     </main>
   );
