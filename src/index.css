@@ -30,33 +30,27 @@ html {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
   font-size: 1.6em; /* default font of 16px */
   background-color: var(--light-grey);
 }
 
 /* TYPOGRAPHY */
-
-input {
-  font-size: 3.2rem;
+label {
+  letter-spacing: 3px;
   font-weight: 700;
+  font-size: 1rem;
+  color: var(--smokey-grey);
 }
 
-.results-cnt {
-  padding: 2em 1.5em;
+input {
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .results-cnt > p {
   font-weight: 800;
   font-style: italic;
   font-size: 5rem;
-}
-
-.results-cnt > p:nth-child(2) {
-  margin: -25px 0;
 }
 
 .results-cnt > p > span {
@@ -66,6 +60,15 @@ input {
 /* MAIN */
 
 main {
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-wrapper {
+  padding: 2em 0;
+  width: 95%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px 20px 75px 20px;
   background-color: var(--off-white);
@@ -81,7 +84,9 @@ form {
 
 .input-cnt {
   display: flex;
+  justify-content: space-between;
   grid-area: a;
+  width: 100%;
 }
 
 label {
@@ -94,7 +99,6 @@ label > input {
   background-color: var(--off-white);
   border: 1px solid var(--light-grey);
   color: var(--off-black);
-  width: 100px;
   padding: 0.25em;
 }
 
@@ -109,6 +113,7 @@ button {
   display: block;
   max-width: 50px;
   padding: 15px;
+  margin: 2em;
   border-radius: 50%;
   border: none;
   background-color: var(--purple);
@@ -120,4 +125,12 @@ button:active, button:hover {
 
 button > img {
   width: 100%;
+}
+
+.results-cnt {
+  padding: 0 1.5em;
+}
+
+.results-cnt > p:nth-child(2) {
+  margin: -25px 0;
 }

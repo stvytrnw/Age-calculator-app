@@ -65,62 +65,64 @@ function App() {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <div className="input-cnt">
-          <label>
-            DAY
-            <input
-              onChange={(e) => setDays(e.target.value)}
-              type="number"
-              name="day"
-              placeholder="DD"
-              value={days}
-              min={0}
-              max={daysInMonth}
-              required
-            />
-          </label>
-          <label>
-            MONTH
-            <input
-              onChange={(e) => setMonth(e.target.value)}
-              type="number"
-              name="day"
-              placeholder="MM"
-              value={month}
-              min={0}
-              max={12}
-              required
-            />
-          </label>
-          <label>
-            YEAR
-            <input
-              onChange={(e) => setYear(e.target.value)}
-              type="number"
-              name="day"
-              placeholder="YYYY"
-              value={year}
-              min={1400}
-              max={new Date().getFullYear()}
-              required
-            />
-          </label>
+      <div className="main-wrapper">
+        <form onSubmit={handleSubmit}>
+          <div className="input-cnt">
+            <label>
+              DAY
+              <input
+                onChange={(e) => setDays(e.target.value)}
+                type="number"
+                name="day"
+                placeholder="DD"
+                value={days}
+                min={0}
+                max={daysInMonth}
+                required
+              />
+            </label>
+            <label>
+              MONTH
+              <input
+                onChange={(e) => setMonth(e.target.value)}
+                type="number"
+                name="day"
+                placeholder="MM"
+                value={month}
+                min={0}
+                max={12}
+                required
+              />
+            </label>
+            <label>
+              YEAR
+              <input
+                onChange={(e) => setYear(e.target.value)}
+                type="number"
+                name="day"
+                placeholder="YYYY"
+                value={year}
+                min={1400}
+                max={new Date().getFullYear()}
+                required
+              />
+            </label>
+          </div>
+          <button>
+            <img src={ArrowIcon} alt="Arrow" />
+          </button>
+        </form>
+        <div className="results-cnt">
+          <p>
+            <span>{yearDiff != null ? yearDiff : "- -"}</span> years
+          </p>
+          <p>
+            <span>{monthDiff != null ? monthDiff : "- -"}</span> months
+          </p>
+          <p>
+            <span>{daysDiff != null ? daysDiff : "- -"}</span> days
+          </p>
         </div>
-        <button>
-          <img src={ArrowIcon} alt="Arrow" />
-        </button>
-      </form>
-      <div className="results-cnt">
-        <p>
-          <span>{yearDiff != null ? yearDiff : "- -"}</span> years
-        </p>
-        <p>
-          <span>{monthDiff != null ? monthDiff : "- -"}</span> months
-        </p>
-        <p>
-          <span>{daysDiff != null ? daysDiff : "- -"}</span> days
-        </p>
       </div>
     </main>
   );
