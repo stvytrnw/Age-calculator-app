@@ -2,19 +2,53 @@ import { useState, useEffect } from "react";
 import ArrowIcon from "./assets/icon-arrow.svg";
 
 function App() {
-  const [days, setDays] = useState(null);
-  const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
-  const [daysInMonth, setDaysInMonth] = useState(null);
-  const [daysDiff, setDaysDiff] = useState(null);
-  const [monthDiff, setMonthDiff] = useState(null);
-  const [yearDiff, setYearDiff] = useState(null);
+  const [days, setDays] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [daysInMonth, setDaysInMonth] = useState("");
+  const [daysDiff, setDaysDiff] = useState("");
+  const [monthDiff, setMonthDiff] = useState("");
+  const [yearDiff, setYearDiff] = useState("");
+  const [errorDay, setErrorDay] = useState("")
+  const [errorMonth, setErrorMonth] = useState("")
+  const [errorYear, setErrorYear] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault();
-    getDaysDiff();
-    getMonthsDiff();
-    getYearsDiff();
+    
+    console.log(days.length)
+
+    if(days.length <= 0) {
+      setErrorDay("This field is required.")
+    } else if (days < 1 || days > daysInMonth){
+      setErrorDay("Must be a valid day")
+    } else if (days.length >= 0){
+      setErrorDay("")
+    }
+
+    if(month.length <= 0) {
+      setErrorMonth("This field is required.")
+    } else if (month < 1 || month > 12){
+      setErrorMonth("Must be a valid month")
+    } else if (month.length >= 0){
+      setErrorMonth("")
+    }
+
+    if(year.length <= 0) {
+      setErrorYear("This field is required.")
+    } else if (year > new Date().getFullYear()){
+      setErrorYear("Must be in the past")
+    } else if (year.length >= 0){
+      setErrorYear("")
+    }
+
+    if(errorDay === "") {
+      getDaysDiff();
+      getMonthsDiff();
+      getYearsDiff();
+    }
+
+
   }
 
   useEffect(() => {
@@ -76,11 +110,10 @@ function App() {
                 name="day"
                 placeholder="DD"
                 value={days}
-                min={0}
-                max={daysInMonth}
-                required
               />
+              {errorDay && <p>{errorDay}</p>}
             </label>
+            
             <label>
               MONTH
               <input
@@ -89,10 +122,8 @@ function App() {
                 name="day"
                 placeholder="MM"
                 value={month}
-                min={0}
-                max={12}
-                required
               />
+              {errorMonth && <p>{errorMonth}</p>}
             </label>
             <label>
               YEAR
@@ -102,10 +133,8 @@ function App() {
                 name="day"
                 placeholder="YYYY"
                 value={year}
-                min={1400}
-                max={new Date().getFullYear()}
-                required
               />
+              {errorYear && <p>{errorYear}</p>}
             </label>
           </div>
           <div className="button-cnt">
