@@ -108,9 +108,12 @@ function App() {
               />
             </label>
           </div>
-          <button>
-            <img src={ArrowIcon} alt="Arrow" />
-          </button>
+          <div className="button-cnt">
+            <div className="line"></div>
+            <button>
+              <img src={ArrowIcon} alt="Arrow" />
+            </button>
+          </div>
         </form>
         <div className="results-cnt">
           <p>
