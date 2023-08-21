@@ -35,7 +35,7 @@ body {
 }
 
 /* TYPOGRAPHY */
-label {
+label .description {
   letter-spacing: 3px;
   font-weight: 800;
   font-size: 1rem;
@@ -45,6 +45,13 @@ label {
 input {
   font-size: 2rem;
   font-weight: 800;
+}
+
+.error-mssg {
+  padding-top: 1em;
+  color: var(--light-red);
+  font-style: italic;
+  font-size: 0.75rem;
 }
 
 .results-cnt > p {
@@ -147,4 +154,58 @@ button img {
 
 .results-cnt > p:nth-child(2) {
   margin: -25px 0;
+}
+
+@media (min-width: 650px) {
+  /* TYPOGRAPHY */
+
+  input {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .error-mssg {
+    font-size: 1rem;
+  }
+
+  .results-cnt > p {
+    font-weight: 800;
+    font-style: italic;
+    font-size: 6rem;
+  }
+
+  .results-cnt > p > span {
+    color: var(--purple);
+  }
+
+  /* MAIN */
+
+  .main-wrapper {
+    padding: 3em 3em;
+    width: 600px;
+    border-radius: 20px 20px 125px 20px;
+  }
+
+  .input-cnt {
+    justify-content: start;
+    gap: 0 1.5em;
+  }
+
+  label > input {
+    width: 110px;
+  }
+
+  .button-cnt {
+    padding: 2.5em 0 1.5em 0;
+    justify-content: flex-end;
+  }
+
+  button {
+    max-width: 60px;
+    margin: 0;
+  }
+
+  .results-cnt > p:nth-child(2) {
+    margin: -25px 0;
+  }
 }

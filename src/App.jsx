@@ -9,47 +9,64 @@ function App() {
   const [daysDiff, setDaysDiff] = useState("");
   const [monthDiff, setMonthDiff] = useState("");
   const [yearDiff, setYearDiff] = useState("");
-  const [errorDay, setErrorDay] = useState("")
-  const [errorMonth, setErrorMonth] = useState("")
-  const [errorYear, setErrorYear] = useState("")
+  const [errorDay, setErrorDay] = useState("");
+  const [errorMonth, setErrorMonth] = useState("");
+  const [errorYear, setErrorYear] = useState("");
+  const [errorStatusDays, setErrorStatusDays] = useState(true);
+  const [errorStatusMonth, setErrorStatusMonth] = useState(true);
+  const [errorStatusYear, setErrorStatusYear] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
-    
-    console.log(days.length)
 
-    if(days.length <= 0) {
-      setErrorDay("This field is required.")
-    } else if (days < 1 || days > daysInMonth){
-      setErrorDay("Must be a valid day")
-    } else if (days.length >= 0){
-      setErrorDay("")
+    if (days.length <= 0) {
+      setErrorDay("This field is required.");
+      setDaysDiff("")
+      setErrorStatusDays(true)
+    } else if (days < 1 || days > daysInMonth) {
+      setErrorDay("Must be a valid day");
+      setDaysDiff("")
+      setErrorStatusDays(true)
+    } else if (days.length >= 0) {
+      setErrorDay("");
+      setErrorStatusDays(false)
     }
 
-    if(month.length <= 0) {
-      setErrorMonth("This field is required.")
-    } else if (month < 1 || month > 12){
-      setErrorMonth("Must be a valid month")
-    } else if (month.length >= 0){
-      setErrorMonth("")
+    if (month.length <= 0) {
+      setErrorMonth("This field is required.");
+      setMonthDiff("")
+      setErrorStatusMonth(true)
+    } else if (month < 1 || month > 12) {
+      setErrorMonth("Must be a valid month");
+      setMonthDiff("")
+      setErrorStatusMonth(true)
+    } else if (month.length >= 0) {
+      setErrorMonth("");
+      setErrorStatusMonth(false)
     }
 
-    if(year.length <= 0) {
-      setErrorYear("This field is required.")
-    } else if (year > new Date().getFullYear()){
-      setErrorYear("Must be in the past")
-    } else if (year.length >= 0){
-      setErrorYear("")
+    if (year.length <= 0) {
+      setErrorYear("This field is required.");
+      setYearDiff("")
+      setErrorStatusYear(true)
+    } else if (year > new Date().getFullYear()) {
+      setErrorYear("Must be in the past");
+      setYearDiff("")
+      setErrorStatusYear(true)
+    } else if (year.length >= 0) {
+      setErrorYear("");
+      setErrorStatusYear(false)
     }
-
-    if(errorDay === "") {
-      getDaysDiff();
-      getMonthsDiff();
-      getYearsDiff();
-    }
-
-
   }
+
+  useEffect(() => {
+    if(!errorStatusDays && !errorStatusMonth && !errorStatusYear) {
+        getDaysDiff();
+        getMonthsDiff();
+        getYearsDiff();
+    }
+
+  }, [errorStatusDays, errorStatusMonth, errorStatusYear])
 
   useEffect(() => {
     setDaysInMonth(new Date(year, month, 0).getDate());
@@ -103,7 +120,7 @@ function App() {
         <form onSubmit={handleSubmit}>
           <div className="input-cnt">
             <label>
-              DAY
+              <p className="description">DAY</p>
               <input
                 onChange={(e) => setDays(e.target.value)}
                 type="number"
@@ -111,11 +128,11 @@ function App() {
                 placeholder="DD"
                 value={days}
               />
-              {errorDay && <p>{errorDay}</p>}
+              {errorDay && <p className="error-mssg">{errorDay}</p>}
             </label>
-            
+
             <label>
-              MONTH
+            <p className="description">MONTH</p>
               <input
                 onChange={(e) => setMonth(e.target.value)}
                 type="number"
@@ -123,10 +140,10 @@ function App() {
                 placeholder="MM"
                 value={month}
               />
-              {errorMonth && <p>{errorMonth}</p>}
+              {errorMonth && <p className="error-mssg">{errorMonth}</p>}
             </label>
             <label>
-              YEAR
+            <p className="description">YEAR</p>
               <input
                 onChange={(e) => setYear(e.target.value)}
                 type="number"
@@ -134,7 +151,7 @@ function App() {
                 placeholder="YYYY"
                 value={year}
               />
-              {errorYear && <p>{errorYear}</p>}
+              {errorYear && <p className="error-mssg">{errorYear}</p>}
             </label>
           </div>
           <div className="button-cnt">
@@ -146,13 +163,13 @@ function App() {
         </form>
         <div className="results-cnt">
           <p>
-            <span>{yearDiff != null ? yearDiff : "- -"}</span> years
+            <span>{yearDiff != "" ? yearDiff : "- -"}</span> years
           </p>
           <p>
-            <span>{monthDiff != null ? monthDiff : "- -"}</span> months
+            <span>{monthDiff != "" ? monthDiff : "- -"}</span> months
           </p>
           <p>
-            <span>{daysDiff != null ? daysDiff : "- -"}</span> days
+            <span>{daysDiff != "" ? daysDiff : "- -"}</span> days
           </p>
         </div>
       </div>
