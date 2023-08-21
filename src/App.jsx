@@ -84,7 +84,10 @@ function App() {
     } else {
       if (new Date().getMonth() + 1 < month) {
         setDifference((prevState) => {
-          return { ...prevState, month: 12 - (month - new Date().getMonth() - 1) };
+          return {
+            ...prevState,
+            month: 12 - (month - new Date().getMonth() - 1),
+          };
         });
       } else {
         setDifference((prevState) => {
