@@ -6,7 +6,7 @@ export default function Results(props) {
       <p>
         <span>
           {Object.keys(props.items.error).length === 0 &&
-          props.items.difference?.year
+          Object.keys(props.items.difference).length !== 0
             ? props.items.difference.year
             : "- -"}
         </span>{" "}
@@ -15,7 +15,7 @@ export default function Results(props) {
       <p>
         <span>
           {Object.keys(props.items.error).length === 0 &&
-          props.items.difference?.month
+          Object.keys(props.items.difference).length !== 0
             ? props.items.difference.month
             : "- -"}
         </span>{" "}
@@ -24,7 +24,7 @@ export default function Results(props) {
       <p>
         <span>
           {Object.keys(props.items.error).length === 0 &&
-          props.items.difference?.day
+          Object.keys(props.items.difference).length !== 0
             ? props.items.difference.day
             : "- -"}
         </span>{" "}

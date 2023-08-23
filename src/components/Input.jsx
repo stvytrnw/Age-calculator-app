@@ -21,6 +21,15 @@ export default function Input(props) {
         ...prevState,
         day: "Must be a valid day",
       }));
+    } else if (
+      new Date().getMonth() + 1 <= month &&
+      new Date().getFullYear() == year &&
+      new Date().getDate() < days
+    ) {
+      props.items.setError((prevState) => ({
+        ...prevState,
+        day: "Must be in the past",
+      }));
     }
 
     if (month.length <= 0) {
@@ -32,6 +41,14 @@ export default function Input(props) {
       props.items.setError((prevState) => ({
         ...prevState,
         month: "Must be a valid month",
+      }));
+    } else if (
+      new Date().getMonth() + 1 < month &&
+      new Date().getFullYear() == year
+    ) {
+      props.items.setError((prevState) => ({
+        ...prevState,
+        month: "Must be in the past",
       }));
     }
 

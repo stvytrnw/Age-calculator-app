@@ -3,7 +3,7 @@ import Input from "./Input";
 import Results from "./Results";
 
 export default function AgeCalculator() {
-  const [difference, setDifference] = useState("- -");
+  const [difference, setDifference] = useState({});
   const [error, setError] = useState({});
 
   return (
